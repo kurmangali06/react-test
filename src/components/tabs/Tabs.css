@@ -1,0 +1,45 @@
+.tabs {
+    display: flex;
+    align-items: center;
+}
+
+.tabHeader {
+    display: flex;
+    align-items: center;
+}
+.btntab {
+    width: 130px;
+    height: 40px;
+}
+.tabBody {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.tab {
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 1px solid black;
+    border-right: 0;
+}
+.tab:last-child {
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.second {
+   border-radius: 0;
+}
+.first {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.active {
+    background: #5177f5;
+    color: white;
+}

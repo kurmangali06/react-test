@@ -4,7 +4,7 @@ import { BaseSelectProps } from './BaseSelect.props';
 import './BaseSelect.css';
 
 
-const BaseSelect: FC<BaseSelectProps> = ({ options, ...selectProps }) => {
+const BaseSelect: FC<BaseSelectProps> = ({ options, ...selectProps }): JSX.Element => {
 
   return (
     <select {...selectProps} className='container'>

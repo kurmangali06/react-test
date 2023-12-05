@@ -1,8 +1,9 @@
 import {FC} from 'react'
 import { ITotalHours } from './totalHours.props';
 import Button from '../Button/Button';
+import './totalHours.css'
 
- const TotalHours: FC<ITotalHours> = ({value, onChange, info}) =>  {
+ const TotalHours: FC<ITotalHours> = ({value, onChange, info, max, min}): JSX.Element =>  {
     const decrimentValue = () => {
         onChange(1, 'dec')
     }
@@ -10,13 +11,14 @@ import Button from '../Button/Button';
         onChange(1, 'inc')
     }
   return (
-    <div>
-        <Button appearance='primary' onClick={decrimentValue}>+</Button>
-        <div>
+    <div className='total'>
+       <Button  appearance='primary' className='btnTotal left' disabled={value === min} onClick={incrementValue}>-</Button>
+        <div className='value'>
         {value}
-        <span>{info}</span>
         </div>
-        <Button  appearance='primary' disabled={value === 0} onClick={incrementValue}>-</Button>
+        <div className='info'>{info}</div>
+        <Button appearance='primary' disabled={ value === max } className='btnTotal right' onClick={decrimentValue}>+</Button>
+        
     </div>
   )
 }

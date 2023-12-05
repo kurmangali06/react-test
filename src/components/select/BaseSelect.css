@@ -1,11 +1,11 @@
 .container {
     padding: 8px;
     font-size: 16px;
-    margin-bottom: 10px;
     border-radius: 5px;
     outline: none;
     border: 1px solid gray;
     background: transparent;
     font-size: 16px;
     height: 36px;
+    width: 180px;
   }

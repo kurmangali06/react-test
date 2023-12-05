@@ -4,8 +4,10 @@
     border: 1px solid rgb(230, 227, 227);
     border-radius: 5px;
     height: 35px;
-    align-items: center;
+    align-items: center;;
+    justify-content: space-around;
     padding: 0 10px;
+    width: 180px;
 }
 .middleText {
     background-color: rgb(133, 122, 122);
@@ -18,4 +20,7 @@
 }
 .time {
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { formatDate, formatTime } from '../../heplers';
+import { formatTime } from '../../heplers';
 import { ITimeRangeProps } from './timeRange.props';
 import './timeRange.css'
 

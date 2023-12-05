@@ -26,7 +26,7 @@ const Tabs:FC<TabsProps> = ({allDays, typeDays, chouseDayes}): JSX.Element =>  {
         } 
     }
   return (
-    <div className='tab'>
+    <div className='tabs'>
         <div className='tabHeader'>
             {typeDays && typeDays.map((t,index) => (
                 <Button className={cn('btntab', {

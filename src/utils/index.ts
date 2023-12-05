@@ -23,5 +23,12 @@ export const Days:ITypeOfDay[] = [
         { value: 'ПT', label: 'ПT'},
         { value: 'СБ', label: 'СБ'},
         { value: 'ВС', label: 'ВС'},
-    ];
-       
+];
+      
+export const Colors:ITypeOfDay[] = [
+    { value: 'gray', label: 'gray '}, 
+    { value: 'blue', label: 'blue'}, 
+    { value: 'green', label: 'green'}, 
+    { value: 'yellow', label: 'yellow'},
+    { value: 'while', label: 'while'},
+]

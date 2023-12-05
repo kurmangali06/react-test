@@ -1,17 +1,18 @@
-import React, { Component, FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import './main.css';
-import Header from '../header/header';
+
 import BaseSelect from '../select/BaseSelect';
-import { Days, breakСlass, typeDays, typeOfHour } from '../../utils';
+import { Colors, Days, breakСlass, typeDays, typeOfHour } from '../../utils';
 import TotalHours from '../totalHours/totalHours';
 import DateRangePicker from '../dataRange/dataRange';
 import Tabs from '../tabs/Tabs';
 import { ITypeDays } from '../../interface';
-import { calculateDays, calculateTime, checkDay, defaultTime } from '../../heplers';
+import { calculateDays, calculateTime, checkDay, defaultTime, formatTime, formatDate } from '../../heplers';
 import TimeRange from '../timeRange/timeRange';
 import BaseModal from '../baseModal/baseModal';
 import Button from '../Button/Button';
-import { log } from 'console';
+
+
 
 
 
@@ -26,6 +27,8 @@ import { log } from 'console';
   const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()])
   const [time, setTime] = useState<[Date, Date]>([defaultTime('first'), defaultTime('second')])
   const [breakType, setBreakType ] = useState(0)
+  const [color, setColor] = useState('gray')
+
 
   const handleSelect: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setType(+e.target.value);
@@ -33,6 +36,11 @@ import { log } from 'console';
   const handleSelectBreak: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setBreakType(+e.target.value);
   };
+
+  const handleSelectColor: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setColor(e.target.value);
+  };
+
 
   const handleHours = (hour: number,  type: 'dec' | 'inc') => {
     if(type === 'dec')
@@ -52,6 +60,7 @@ import { log } from 'console';
     else
       setDayHours(dayHours - hour)
   }
+
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
@@ -67,26 +76,51 @@ import { log } from 'console';
   },[type, dayHours, breakType]);
 
   const handleSubmit = () => {
-    console.log(221)
+    const formDate = {
+      type: type,
+      days: days.value,
+      totalHours: totalHours,
+      dayHours: dayHours,
+      dataStart: formatDate(date[0]),
+      dataEnd: formatDate(date[1]),
+      timeStart: formatTime(time[0]),
+      timeEnd: formatTime(time[1]),
+      break: breakType
+    }
+    console.log(formDate)
     closeModal()
   }
     return (
       <>
       <Button  appearance='primary' className='btnMain'  onClick={openModal}> Изменить расписания</Button>
       <BaseModal isOpen={modalIsOpen} onClose={closeModal} header="Редактирование расписания" onSubmit={handleSubmit}>
-      <div className='main'>   
+      <div className='main'>
+        <div className='title'>
+          <div className='nameSchole'>
+              Онлайн школа 
+          </div>
+          <div className='group'>
+              Цвет группы
+              <BaseSelect style={{width: '90px'}}  options={Colors} onChange={handleSelectColor} value={color} />
+          </div>
+          </div>   
         <div className='firstFields'>
-          <BaseSelect options={typeOfHour} onChange={handleSelect} value={type} />
+          <BaseSelect  options={typeOfHour} onChange={handleSelect} value={type} />
           <TotalHours  min={1} info='Всего часов' value={totalHours} onChange={handleHours} />
           <DateRangePicker dateRange={date} changeDateRange={setDate}/>
         </div>
-        <div className='secondFields'>
           <Tabs typeDays={typeDays} allDays={Days} chouseDayes={(e) =>chouseDayes(e)}/>
-        </div>
         <div className='ThidsFields'>
             <BaseSelect options={breakСlass} onChange={handleSelectBreak} value={breakType} />
             <TotalHours min={1} info='Часов в день' value={dayHours} max={totalHours} onChange={handleDaysHours} />
             <TimeRange timeRange={time}/>
+        </div>
+        <div className='LastFields'>
+            <BaseSelect  style={{width: '400px'}} options={breakСlass} onChange={handleSelectBreak} value={breakType} />
+            <BaseSelect options={breakСlass} onChange={handleSelectBreak} value={breakType} />
+        </div>
+        <div className='Attention'>
+          Выбор  <span>преподователя</span> и <span>аудитории</span> не обязательно
         </div>
       </div>
       </BaseModal>

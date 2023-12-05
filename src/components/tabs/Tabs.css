@@ -1,6 +1,7 @@
 .tabs {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .tabHeader {
@@ -20,7 +21,7 @@
     height: 100%;
     display: flex;
     cursor: pointer;
-    width: 50px;
+    width: 48px;
     justify-content: center;
     align-items: center;
     background: white;
@@ -31,6 +32,10 @@
     border: 1px solid black;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+.tab:first-child {
+    border: 1px solid black;
+    border-left:    none ;
 }
 .second {
    border-radius: 0;

@@ -8,6 +8,7 @@ const  Button = ({children,appearance, className, ...props }: ButtonProps): JSX.
     <button className={cn('btn', className, {
         'primary': appearance === 'primary',
         'ghost': appearance === 'ghost',
+        'none': appearance === 'none',
       })} {...props}>{children}</button>
   )
 }

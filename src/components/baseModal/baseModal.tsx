@@ -15,7 +15,7 @@ import Button from '../Button/Button';
             </div>
             <div className="modal-content">{children}</div>
             <div className="modal-footer">
-                 <Button appearance='ghost' onClick={onClose}>Отмена</Button>
+                 <Button appearance='none' onClick={onClose}>Отмена</Button>
                  <Button appearance='ghost' onClick={onSubmit}>Добавить расписания</Button>
             </div>
           </div>

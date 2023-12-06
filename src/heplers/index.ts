@@ -1,4 +1,3 @@
-import { log } from "console";
 import { ITypeDays } from "../interface";
 
 export const formatDate = (dateString: Date) => {
@@ -62,28 +61,12 @@ export function checkDay(type: string, total: number) {
 }
 
 
-export  const defaultTime = (actions: 'first' | 'second') => {
-  if(actions === "first") {
-    const currentDate = new Date();
-    currentDate.setHours(7, 0, 0, 0); // Устанавливаем 7:00:00.000
-    return currentDate;
-  } else {
-    const currentDate = new Date();
-    currentDate.setHours(8, 0, 0, 0); // Устанавливаем 7:00:00.000
-    return currentDate;
-  }
 
-};
 
 export const calculateTime = (type: number, total: number, breakType: number) => {
   const newDate = new Date();
-  if(type === 60) {
-    const totalMinute = (type * total) - breakType; 
-    return newDate.setHours(newDate.getMinutes() + totalMinute);
-  }    
-  else  {
-    const totalMinute = (type * total) - breakType;
-    return newDate.setMinutes(newDate.getMinutes() + totalMinute);
-  }
-  
+  const totalMinute = (type * total) - breakType;
+  const  currentDate = newDate.setMinutes(newDate.getMinutes() + totalMinute)
+    return new Date(currentDate)
+
 }

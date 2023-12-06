@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import  { FC } from 'react';
 import { formatTime } from '../../heplers';
 import { ITimeRangeProps } from './timeRange.props';
 import './timeRange.css'

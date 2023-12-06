@@ -2,12 +2,12 @@ import React, { FC, useEffect, useState } from 'react'
 import './main.css';
 
 import BaseSelect from '../select/BaseSelect';
-import { Colors, Days, breakСlass, typeDays, typeOfHour } from '../../utils';
+import { Colors, Days, breakСlass, offices, teachers, typeDays, typeOfHour } from '../../utils';
 import TotalHours from '../totalHours/totalHours';
 import DateRangePicker from '../dataRange/dataRange';
 import Tabs from '../tabs/Tabs';
 import { ITypeDays } from '../../interface';
-import { calculateDays, calculateTime, checkDay, defaultTime, formatTime, formatDate } from '../../heplers';
+import { calculateDays, calculateTime, checkDay, formatTime, formatDate } from '../../heplers';
 import TimeRange from '../timeRange/timeRange';
 import BaseModal from '../baseModal/baseModal';
 import Button from '../Button/Button';
@@ -25,11 +25,12 @@ import Button from '../Button/Button';
   const [totalHours, setTotalHours ]= useState(3)
   const [dayHours, setDayHours ]= useState(1)
   const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()])
-  const [time, setTime] = useState<[Date, Date]>([defaultTime('first'), defaultTime('second')])
-  const [breakType, setBreakType ] = useState(0)
+  const [time, setTime] = useState<[Date, Date]>([new Date(), new Date()])
+  const [breakType, setBreakType ] = useState(0);
+  const [cabinet, setCabinet ] = useState(0)
+  const [teacher, setTeacher] = useState('')
   const [color, setColor] = useState('gray')
-
-
+  
   const handleSelect: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setType(+e.target.value);
   };
@@ -41,6 +42,13 @@ import Button from '../Button/Button';
     setColor(e.target.value);
   };
 
+  const handleSelectCabinet: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setCabinet(+e.target.value);
+  };
+
+  const handleSelectTeacher: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setTeacher(e.target.value);
+  };
 
   const handleHours = (hour: number,  type: 'dec' | 'inc') => {
     if(type === 'dec')
@@ -85,7 +93,10 @@ import Button from '../Button/Button';
       dataEnd: formatDate(date[1]),
       timeStart: formatTime(time[0]),
       timeEnd: formatTime(time[1]),
-      break: breakType
+      break: breakType,
+      teacher: teacher ? teacher : null,
+      cabinet: cabinet ? cabinet : null,
+      color: color
     }
     console.log(formDate)
     closeModal()
@@ -113,11 +124,11 @@ import Button from '../Button/Button';
         <div className='ThidsFields'>
             <BaseSelect options={breakСlass} onChange={handleSelectBreak} value={breakType} />
             <TotalHours min={1} info='Часов в день' value={dayHours} max={totalHours} onChange={handleDaysHours} />
-            <TimeRange timeRange={time}/>
+            <TimeRange timeRange={time} />
         </div>
         <div className='LastFields'>
-            <BaseSelect  style={{width: '400px'}} options={breakСlass} onChange={handleSelectBreak} value={breakType} />
-            <BaseSelect options={breakСlass} onChange={handleSelectBreak} value={breakType} />
+            <BaseSelect  style={{width: '400px'}} options={teachers} onChange={handleSelectTeacher} value={teacher} />
+            <BaseSelect options={offices} onChange={handleSelectCabinet} value={cabinet} />
         </div>
         <div className='Attention'>
           Выбор  <span>преподователя</span> и <span>аудитории</span> не обязательно

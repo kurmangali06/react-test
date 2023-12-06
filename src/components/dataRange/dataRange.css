@@ -1,6 +1,4 @@
-input {
-    display: none;
-}
+
 .dataRange {
     display: flex;
     gap: 10px;
@@ -9,7 +7,6 @@ input {
     width: 180px;
     height: 35px;
     align-items: center;
-    justify-content: space-between;
     padding: 0 10px;
     cursor: pointer;
     position: relative;
@@ -17,6 +14,7 @@ input {
 .middleText {
     background-color: rgb(133, 122, 122);
     height: 100%;
+    flex-grow: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,6 +23,7 @@ input {
 }
 .date {
     font-size: 14px;
+    flex-grow: 1;
 }
 .datapicker{
     position: absolute;

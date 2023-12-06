@@ -32,3 +32,15 @@ export const Colors:ITypeOfDay[] = [
     { value: 'yellow', label: 'yellow'},
     { value: 'while', label: 'while'},
 ]
+
+export const offices:IbreakСlass[] = [
+    { value: 1, label: "1 аудитория"}, 
+    { value: 2, label: '2 аудитория'}, 
+    { value: 3, label: '3 аудитория'}, 
+    { value: 4, label: '4 аудитория'},
+    { value: 5, label: '5 аудитория'},
+]
+export const teachers:ITypeOfDay[] = [
+    { value: 'Иванов', label: "Иванов"}, 
+    { value: 'Петров', label: 'Петров'}, 
+]
